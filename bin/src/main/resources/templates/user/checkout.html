@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+	th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+
+</head>
+
+<body ng-app="checkout-address-app" ng-controller="checkout-ctrl" >
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Checkout</h3>
+					<ul class="breadcrumb-tree">
+						<li><a href="#">Home</a></li>
+						<li class="active">Checkout</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container"> 
+		
+			<!-- row -->
+			<div class="row">
+				<form name="checkoutForm" novalidate>
+				<div class="col-md-7">
+					<!-- Shiping Details -->
+					<div class="shiping-details">
+						<div class="section-title">
+							<h3 class="title">Shiping address</h3>
+						</div>
+						<div class="input-checkbox">
+							<input type="checkbox" id="shiping-address"> <label
+								for="shiping-address"> <span></span> Sử dụng địa chỉ có
+								sẳn?
+							</label>
+							<div class="caption">
+								<div class="form-group">
+									<div class="card">
+										<br>
+										<div class="card-body">
+											<div class="row" ng-repeat="ad in address">
+												<div class="col-md-8">
+													<blockquote class="blockquote mb-0">
+														<p>
+															<b>{{ad.fullname}} </b>
+														</p>
+														<p>{{ad.address}}</p>
+														<footer class="blockquote-footer">
+															<b>{{ad.phoneNumber}} </b><cite title="Source Title">.</cite>
+														</footer>
+													</blockquote>
+												</div>
+												<div class="col-md-4">
+													<button ng-click="choose(ad)" class="btn btn-success">Chọn</button>
+													<button ng-click="delete(ad)" class="btn btn-danger">Xóa</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- /Shiping Details --> 
+					<!-- Billing Details -->
+					<div class="billing-details">
+						<div class="section-title">
+							<h3 class="title">Billing address</h3>
+						</div>
+							
+							<div class="form-group"> 
+							 	
+								<span style="color:red" ng-show="checkoutForm.fullname.$dirty && checkoutForm.fullname.$invalid">
+									<span ng-show="checkoutForm.fullname.$error.required">Vui lòng nhập họ tên</span>
+								</span>
+								<input  ng-model="form.fullname" class="input" type="text"
+									name="fullname" placeholder="Full Name" required touched>
+							</div>
+							<div class="form-group">  
+								<span style="color:red" ng-show="checkoutForm.address.$dirty && checkoutForm.address.$invalid">
+									<span ng-show="checkoutForm.address.$error.required">Vui lòng nhập địa chỉ</span>
+								</span>
+								<input ng-model="form.address" class="input" type="text"
+									name="address" placeholder="Address" required>
+							</div>
+							<div class="form-group"> 
+								<span style="color:red" ng-show="checkoutForm.phoneNumber.$dirty && checkoutForm.phoneNumber.$invalid">
+									<span ng-show="checkoutForm.phoneNumber.$error.required">Vui lòng nhập số điện thoại</span>
+								</span>
+							  	<input ng-model="form.phoneNumber" class="input" type="tel"
+									name="phoneNumber" placeholder="Telephone" required>
+							</div>
+						
+							<div class="form-group">  
+							  	<input ng-model="form.note" class="input" type="tel"
+									name="note" placeholder="note">
+							</div>
+					</div>
+					<!-- /Billing Details -->
+
+
+				</div>
+
+				<!-- Order Details -->
+				<div class="col-md-5 order-details">
+					<div class="section-title text-center">
+						<h3 class="title">Your Order</h3>
+					</div>
+					<div class="order-summary">
+						<div class="order-col">
+							<div>
+								<strong>PRODUCT</strong>
+							</div>
+							<div>
+								<strong>TOTAL</strong>
+							</div>
+						</div>
+						<div class="order-products">
+							<div class="order-col" ng-repeat="item in carts" >
+								<div>
+									<b> <span>{{item.quantity}}</span>x
+									</b><span>{{item.product.name}}</span>
+								</div>
+								<div>
+									 {{item.price.price}}
+								</div>
+							</div>
+						</div>
+						<div class="order-col">
+							<div>Shiping</div>
+							<div>
+								<strong>FREE</strong>
+							</div>
+						</div>
+						<div class="order-col">
+							<div>
+								<strong>TOTAL</strong>
+							</div>
+							<div>
+								<strong class="order-total">$2940.00</strong>
+							</div>
+						</div>
+					</div>
+
+					<div class="input-checkbox">
+						<input type="checkbox"  ng-model="saveAddress" id="terms" name="saveAddress"> <label
+							for="terms"> <span></span>Lưu địa chỉ<a> vào danh sách địa chỉ</a>
+						</label>
+					</div>  
+					<button ng-click="checkout(carts)" class="btn btn-danger order-submit" ng-disabled="checkoutForm.fullname.$invalid || checkoutForm.address.$invalid || checkoutForm.phoneNumber.$invalid ">Place order</button>
+				</div>
+				<!-- /Order Details --> 
+			</div>
+			<!-- /row --> 
+			</form>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<script type="text/javascript" src="/user/js/checkout-ctrl.js"></script>
+</body>
+
+</html>

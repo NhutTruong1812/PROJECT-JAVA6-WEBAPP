@@ -1,0 +1,57 @@
+﻿<div class="card">
+	<div class="card-header">
+		<h4 class="card-title">Tất cả người đùng </h4>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table display" style="min-width: 845px">
+				<thead>
+					<tr>
+						<th>Avatar</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Họ tên</th>
+						<th>Số điện thoại</th>
+						<th>Ngày tham gia</th>
+						<th>Trạng thái</th>
+						<th>Thao tác</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in pager.items">
+						<td><img class="rounded-circle" width="35" height="35" alt="avatar"
+								src="/images/user/{{item.avatar}}" alt=""></td>
+						<td>{{item.username}}</td>
+						<td><a href="javascript:void(0);"><strong>{{item.email}}</strong></a>
+						</td>
+						<td>{{item.fullname}} </td>
+						<td><a href="javascript:void(0);"><strong>{{item.phoneNumber}}</strong></a></td>
+
+
+						<td>{{item.registerDate}}</td>
+						<td>{{item.activated?'Chấp nhận':'Từ chối'}}</td>
+						<td>
+							<button ng-click="user.edit(item)" class="btn btn-sm btn-primary"
+								id="edit-user-{{item.id}}"><i class="la la-pencil"></i></button>
+							<button ng-click="user.delete(item.id)" class="btn btn-sm btn-danger"
+								id="delete-user-{{item.id}}"><i class="la la-trash-o"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="panel-footer text-center">
+				<button ng-click="pager.first()" class="btn btn-danger">
+					<< </button>
+						<button ng-click="pager.prev()" class="btn btn-primary">
+							< </button>
+								<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+								<button ng-click="pager.next()" class="btn btn-primary">
+									>
+								</button>
+								<button ng-click="pager.last()" class="btn btn-danger">
+									>>
+								</button>
+			</div>
+		</div>
+	</div>
+</div>

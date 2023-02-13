@@ -1,0 +1,54 @@
+﻿<div class="card">
+ <div class="card-header">
+        <h4 class="card-title"></h4>
+        <a ng-click="next()" class="btn btn-primary">+ Thêm mới</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User Name</th>
+                        <th>Full Name</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>CreateDate</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="orders">
+                    <tr ng-repeat="item in pager.items | filter:searchFish">
+                        <td>{{item.id}}</td>
+                        <td>{{item.user.username}}</td>
+                        <td>{{item.fullname}}</td>
+                        <td>{{item.phoneNumber}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+                        <td>{{item.status.name}}</td>
+                        <td>
+                            <a href="javascript:void(0);" ng-click="edit(item)" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                            <a href="javascript:void(0);" ng-hide="item.status.id == 'CANCELED' || item.status.id == 'DELIVERED' || item.status.id == 'DELIVERING'" ng-click="delete2(item)" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></a>
+                        </td>	
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer text-center">
+				<button ng-click="pager.first()" class="btn btn-danger">
+					<<
+				</button>
+				<button ng-click="pager.prev()" class="btn btn-primary">
+					<
+				</button>
+				<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+				<button ng-click="pager.next()" class="btn btn-primary">
+					>
+				</button>
+				<button ng-click="pager.last()" class="btn btn-danger">
+					>>
+				</button>
+			</div>
+        </div>
+    </div>
+</div>

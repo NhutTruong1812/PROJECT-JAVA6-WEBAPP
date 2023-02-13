@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header th:fragment="header">
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a th:href="@{mailto:f-wolves@gmail.com}">
+							<th:block th:unless="${currentUser==null}"><i class="fa fa-envelope-o"></i>
+								[[${currentUser.email}]]
+							</th:block>
+							</a></li>
+
+				</ul>
+				<ul class="header-links pull-right">
+					<li class="dropdown">
+						<button class="dropdown-toggle"
+							style="color: white; background-color: #1E1F29; outline: none; border: none;" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<th:block th:unless="${#request.remoteUser}">
+								Account
+							</th:block>
+
+							<th:block th:if="${#request.remoteUser}">
+								[[${currentUser.fullname}]]
+							</th:block>
+							<i class="fa fa-phone"></i>
+						</button>
+						<ul class="dropdown-menu"
+							style="color: white; background-color: #1E1F29; outline: none; border: none;">
+							<li th:unless="${#request.remoteUser}" class="dropdown-item"><a th:href="@{~/access/login}"><i
+										class="fa fa-user-o"></i>[[#{header.login}]]</a></li>
+							<li th:unless="${#request.remoteUser}" class=" dropdown-item"><a
+									th:href="@{~/home/edit-profile}"><i
+										class="fa fa-user-o"></i>[[#{header.editprofile}]]</a></li>
+							<li th:if="${#request.remoteUser}" class=" dropdown-item"><a
+									th:href="@{~/home/change-password}"><i
+										class="fa fa-user-o"></i>[[#{header.changepassword}]]</a></li>
+							<li th:unless="${#request.remoteUser}" class="dropdown-item"><a
+									th:href="@{~/home/forgot-password}"><i
+										class="fa fa-user-o"></i>[[#{header.forgotpassword}]]</a></li>
+
+							<th:block th:if="${#request.remoteUser}">
+								<th:block
+									th:if="${#request.isUserInRole('ADMIN') || #request.isUserInRole('DIRECT')}">
+									<li class="dropdown-item"><a th:href="@{~/admin/index}"><i
+												class="fa fa-user-o"></i>[[#{header.adminpage}]]</a>
+									</li>
+								</th:block>
+							</th:block>
+							<li th:unless="${#request.remoteUser}" class="dropdown-item"><a
+									th:href="@{~/access/register}"><i
+										class="fa fa-user-o"></i>[[#{header.register}]]</a></li>
+							<li th:if="${#request.remoteUser}" class="dropdown-item"><a th:href="@{~/home/logout}"><i
+										class="fa fa-user-o"></i>[[#{header.logout}]]</a></li>
+						</ul>
+					</li>
+					<i class="fa fa-language" style="font-size:20px; color: red;"></i>
+					<a style="color: white;" href="?lang=vi">Tiếng việt</a> |
+					<a style="color: white;" href="?lang=en">English</a>
+				</ul>
+
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a th:href="@{~/home/index}" class="logo">
+								<!-- <img src="./img/logo.png" alt=""> -->
+								<h1 style="color: white;">Latipee</h1>
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form action="/home/shop" method="post">
+								<input style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"
+									class="input" placeholder="Tìm kiếm tại đây" name="shop_tuKhoa">
+								<button class="search-btn">[[#{header.search}]]</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<!-- Cart -->
+							<div class="dropdown">
+								<a th:href="@{~/home/cart}"> <i class="fa fa-shopping-cart"></i>
+									<span>[[#{header.cart}]]</span>
+									<div class="qty"></div>
+								</a>
+							</div>
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#"> <i class="fa fa-bars"></i> <span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+
+</body>
+
+</html>

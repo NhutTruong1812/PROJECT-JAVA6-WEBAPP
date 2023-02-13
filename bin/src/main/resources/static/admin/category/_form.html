@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Basic Info</h5>
+            </div>
+            <div class="card-body">
+                <form action="" method="post" id="category">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">ID Category</label>
+                                <input ng-model="form.id" ng-hide="form.deleted != null" type="text" id="id" class="form-control" ng-blur="findId()" name="id"  required>
+                                <input ng-model="form.id" ng-hide="form.deleted == null" type="text" id="id" readonly="true" class="form-control" name="id" required>
+                                <small class="form-message"></small>
+                            </div>
+                        </div> 
+                         
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Name Category</label>
+                                <input ng-model="form.name" type="text" id="name" class="form-control" name="name" required>
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <input ng-model="form.deleted" type="hidden" class="form-control"> 
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	<button ng-hide="form.name != null && form.id != null" type="submit" class="btn btn-success">Thêm</button>
+                            <div ng-click="create()" ng-hide="form.deleted != null || form.name == null || form.id == null" class="btn btn-success">Thêm</div>
+                            <div ng-click="update()" ng-hide="form.deleted == null" class="btn btn-primary">Cập nhật</div>
+                            <div ng-click="delete()" ng-hide="form.deleted == null" class="btn btn-danger">Xóa</div>
+                            <button ng-click="reset()" type="reset" class="btn btn-light">Làm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

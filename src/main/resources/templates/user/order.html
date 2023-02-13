@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+
+</head>
+
+<body>
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="card">
+					<div class="card-header">
+						<a th:href="@{|/home/order|}" class="btn btn-primary">Tất cả</a>
+						<a th:href="@{|/home/order/status/waiting|}" class="btn btn-info">Chờ giao</a>
+						<a th:href="@{|/home/order/status/delivering|}" class="btn btn-warning">Đang giao</a>
+						<a th:href="@{|/home/order/status/deliver|}" class="btn btn-success">Đã giao</a>
+						<a th:href="@{|/home/order/status/cancel|}" class="btn btn-danger">Đã hủy</a>
+
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-8">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Đơn hàng</th>
+											<th>Ngày</th>
+											<th>Trạng thái</th>
+											<th>Hàng động</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="d-flex justify-content-center" th:each="ord: ${orderItems.content}"
+											th:object="${ord}">
+											<td th:text="*{id}"></td>
+											<td th:text="*{createDate}"></td>
+											<td th:text="*{status.name}"></td>
+											<td class="">
+												<a th:href="@{|/home/order/detail/*{id}|}"><i
+														class="btn btn-success">Xem</i></a>
+												<th:block th:if="*{status.id == 'WATING'}">
+													<a th:href="@{|/home/order/delete/*{id}|}"><i
+															class="btn btn-danger">Hủy</i></a>
+												</th:block>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- store bottom filter -->
+								<div class="store-filter clearfix">
+									<span class="store-qty">HIỂN THỊ [[${#arrays.length(orderItems.content)}]] ĐƠN
+										HÀNG</span>
+									<ul class="store-pagination">
+										<th:block th:if="${(orderItems.number > 0 )}">
+											<li><a th:href="|?index=0|">1</a></li>
+										</th:block>
+										<th:block th:if="${(orderItems.number > 1) }">
+											<li><a th:href="|?index=${orderItems.number - 1}|">
+													[[${(orderItems.number)}]]</a></li>
+										</th:block>
+										<li class="active">[[${(orderItems.number + 1 )}]]</li>
+
+										<th:block th:if="${(orderItems.totalPages) > (orderItems.number + 1) }">
+											<li><a th:href="|?index=${orderItems.number+1}|">
+													[[${orderItems.number+2}]]</a></li>
+										</th:block>
+										<th:block th:if="${(orderItems.totalPages) > (orderItems.number + 2) }">
+											<li><a th:href="|?index=${orderItems.totalPages - 1}|">
+													[[${orderItems.totalPages}]]</a></li>
+										</th:block>
+									</ul>
+								</div>
+								<!-- /store bottom filter -->
+							</div>
+							<!-- Order Details -->
+							<div class="col-md-4 order-details">
+								<div class="section-title text-center">
+									<h3 class="title">Đơn hàng của bạn</h3>
+								</div>
+								<th:block th:if="${orderItem != null}">
+									<div class="order-summary" th:object="${orderItem}">
+										<div class="order-col">
+											<div>Ngày tạo</div>
+											<div>
+												<strong>[[*{createDate}]]</strong>
+											</div>
+										</div>
+										<div class="order-col">
+											<div>Người nhận</div>
+											<div>
+												<strong>[[*{fullname}]]</strong>
+											</div>
+										</div>
+										<div class="order-col">
+											<div>SDT</div>
+											<div>
+												<strong>[[*{phoneNumber}]]</strong>
+											</div>
+										</div>
+										<div class="order-col">
+											<div>Địa chỉ</div>
+											<div>
+												<strong>[[*{address}]]</strong>
+											</div>
+										</div>
+										<div class="order-col">
+											<div>Trạng thái</div>
+											<div>
+												<strong>[[*{status.name}]]</strong>
+											</div>
+										</div>
+
+										<div class="order-col">
+											<div>
+												<strong>PRODUCT</strong>
+											</div>
+											<div>
+												<strong>TOTAL</strong>
+											</div>
+										</div>
+										<div class="order-products" th:each="orderDetail: ${orderItem.orderDetails}"
+											th:object="${orderDetail}">
+											<div class="order-col">
+												<div>[[*{product.name}]]</div>
+												<div>[[*{quantity}]]</div>
+												<div>[[*{#numbers.formatDecimal(priceHistory.price, 0, 'COMMA', 0,
+													'POINT')}]]</div>
+											</div>
+										</div>
+										<div class="order-col" th:each="orderDetail: ${sumOrder}"
+											th:object="${orderDetail}">
+											<div>
+												<strong>TOTAL</strong>
+											</div>
+											<div>
+												<strong class="order-total">[[*{sumPrice}]]</strong>
+											</div>
+										</div>
+									</div>
+								</th:block>
+							</div>
+							<!-- /Order Details -->
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+	th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+</head>
+
+<body>
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">LOGIN</h3>
+					<ul class="breadcrumb-tree">
+						<li><a href="#">Home</a></li>
+						<li class="active">Login</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-7">
+					<!-- Billing Details -->
+					<form th:action="@{~/access/login}" method="post">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Đăng nhập</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="username"
+									placeholder="Username">
+							</div>
+
+							<div class="form-group">
+								<input class="input" type="password" name="password"
+									placeholder="Password">
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<div class="input-checkbox">
+											<input name="remember_me" type="checkbox" id="create-account">
+											<label for="create-account"> <span></span> Remember
+												me?
+											</label>
+										</div>
+									</div>
+								</div>
+								<!--  -->
+								<div class="col-md-6">
+									<div class="form-group">
+										<div class="input-checkbox">
+											<input type="checkbox" id="terms"> <label for="terms">
+												<span></span> Show password?
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<a href=""> <label for="terms"> <span></span>
+												Create Account?
+										</label>
+										</a>
+
+									</div>
+								</div>
+								<!--  -->
+								<div class="col-md-6">
+									<div class="form-group">
+										<a href=""> <label for="terms"> <span></span>
+												Fogotpassword?
+										</label>
+										</a>
+
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="primary-btn col-md-12">Đăng
+									Nhập</button>
+							</div>
+						</div>
+					</form>
+					<!-- /Billing Details -->
+				</div>
+
+				<!-- Order Details -->
+				<div class="col-md-5 order-details"></div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+</body>
+
+</html>

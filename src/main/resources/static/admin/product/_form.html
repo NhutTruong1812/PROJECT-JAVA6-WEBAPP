@@ -1,0 +1,111 @@
+﻿<div class="row">
+	<div class="col-xl-12 col-xxl-12 col-sm-12">
+		<div class="card">
+			<div class="card-header">
+			</div>
+			<div class="card-body">
+				<form name="FormData" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="form-group" hidden="true">
+								<label class="form-label">ID</label>
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-12">
+							<div class="form-group fallback w-100">
+								<label class="form-label">Poster</label>
+								<div for="banner"
+									style="min-width: 100%; border: 1px dotted red; min-height: 200px; max-height: 200px;">
+									<center>
+										<img alt="{{form.banner}}" ng-src="{{'/images/product/'+form.banner}}"
+											style="min-width:100px; min-height: 200px; max-height: 200px;">
+									</center>
+								</div>
+								<br>
+								<input type="file" ng-model="form.banner" name="banner" id="banner"
+									onchange="angular.element(this).scope().posterChanged(this.files)"
+									fileInput="form.banner">
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-8 col-sm-12">
+							<div class="form-group fallback w-100">
+								<label class="form-label">Image Description</label>
+								<div
+									style="min-width: 100%; border: 1px dotted red; min-height: 200px; max-height: 200px;">
+									<img ng-repeat="i in filenames" alt="{{i}}" ng-src="{{'/images/bannerdetail/'+i}}"
+										style="max-height: 100px;">
+								</div>
+								<br>
+								<input multiple type="file" ng-model="form.img" name="img" id="img"
+									onchange="angular.element(this).scope().imgChanged(this.files)"
+									fileInput="form.img.name">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Name Product</label>
+								<input type="text" class="form-control" ng-model="form.name" name="name" required>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Category</label>
+								<select class="form-control" name="category " ng-model="form.category.id">
+									<option ng-repeat="cate in itemCates" ng-value="cate.id">{{cate.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Price</label>
+								<input type="number" class="form-control" name="price" ng-model="form.price.price"
+									required>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Quantity</label>
+								<input type="number" class="form-control" ng-model="form.quantity" name="quantity"
+									required>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">CreatDate</label>
+								<input type="date" class="form-control" name="createDate" ng-model="form.createDate">
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Deleted</label>
+								<div class="form-control">
+									<input type="radio" ng-model="form.deleted" ng-value="false"> Hoạt động
+									<input type="radio" ng-model="form.deleted" ng-value="true"> Ngừng bán
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="form-group">
+								<label class="form-label">Description</label>
+								<textarea class="form-control" rows="5" ng-model="form.description"></textarea>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<button type="submit" ng-click="create()" class="btn btn-success">Thêm</button>
+							<button type="submit" ng-click="update()" class="btn btn-primary">Cập nhật</button>
+							<button type="submit" ng-click="delete(form)" class="btn btn-danger">Vô Hiệu Hóa</button>
+							<button type="reset" ng-click="reset()" class="btn btn-light">Làm mới</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

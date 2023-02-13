@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(view)">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Home</title>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="/user/css/bootstrap.min.css" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="/user/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="/user/css/slick-theme.css" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="/user/css/nouislider.min.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="/user/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="/user/css/style.css" />
+
+	<!--  -->
+	<!-- Angular js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<!-- router -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<!--  -->
+
+	<style type="text/css">
+		.error {
+			color: red;
+			border: 1px dotted red;
+		}
+	</style>
+</head>
+
+<body  ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<!-- HEADER -->
+	<header th:insert="~{/user/layout/_header.html::header}"></header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<nav th:insert="~{/user/layout/_menu.html::navbar}"></nav>
+	<!-- /NAVIGATION -->
+
+
+	<!-- MAIN -->
+	<main th:replace="${view}"></main>
+	<!-- /MAIN -->
+
+
+	<!-- NEWSLETTER -->
+	<div id="newsletter" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="newsletter">
+						<p>
+							Liên kết thêm với<strong>MXH</strong>
+						</p>
+						<ul class="newsletter-follow">
+							<li><a href="/oauth2/authorization/facebook"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="/oauth2/authorization/google"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NEWSLETTER -->
+
+
+	<!-- FOOTER -->
+	<footer id="footer" th:insert="~{/user/layout/_footer.html::footer}"></footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+
+
+	<script src="/user/js/jquery.min.js"></script>
+	<script src="/user/js/bootstrap.min.js"></script>
+	<script src="/user/js/slick.min.js"></script>
+	<script src="/user/js/nouislider.min.js"></script>
+	<script src="/user/js/jquery.zoom.min.js"></script>
+	<script src="/user/js/main.js"></script>
+	<script src="/user/js/shopping-cart-app.js"></script>
+	<script src="/user/js/shop.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header th:fragment="header">
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a th:href="@{tel:+0123456789}"><i class="fa fa-phone"></i>
+							+0123456789</a></li>
+					<li><a th:href="@{mailto:f-wolves@gmail.com}"><i class="fa fa-envelope-o"></i>
+							f-wolves@gmail.com</a></li>
+					<li><a
+							th:href="@{https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+cao+%C4%91%E1%BA%B3ng+FPT+Polytechnic+C%E1%BA%A7n+Th%C6%A1/@10.0269596,105.7570681,21z/data=!4m5!3m4!1s0x31a089d294a53693:0xf3d0fb7758da72d0!8m2!3d10.0269575!4d105.7571654}"><i
+								class="fa fa-map-marker"></i> Ninh kiều, Cần Thơ</a></li>
+
+				</ul>
+				<ul class="header-links pull-right">
+					<li class="dropdown">
+						<button class="dropdown-toggle"
+							style="color: white; background-color: #1E1F29; outline: none; border: none;" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+							<th:block th:if="${currentUser==null}">
+								Account
+							</th:block>
+
+
+							<th:block th:unless="${currentUser==null}">
+								[[${currentUser.fullname}]]
+							</th:block>
+							<i class="fa fa-phone"></i>
+						</button>
+						<ul class="dropdown-menu"
+							style="color: white; background-color: #1E1F29; outline: none; border: none;">
+							<li th:if="${currentUser == null}" class="dropdown-item"><a th:href="@{~/access/login}"><i
+										class="fa fa-user-o"></i>[[#{header.login}]]</a></li>
+							<li th:if="${currentUser != null}" class="dropdown-item"><a
+									th:href="@{~/home/edit-profile}"><i
+										class="fa fa-user-o"></i>[[#{header.editprofile}]]</a></li>
+							<li th:if="${currentUser != null}" class="dropdown-item"><a
+									th:href="@{~/home/change-password}"><i
+										class="fa fa-user-o"></i>[[#{header.changepassword}]]</a></li>
+							<li th:if="${currentUser == null}" class="dropdown-item"><a
+									th:href="@{~/home/forgot-password}"><i
+										class="fa fa-user-o"></i>[[#{header.forgotpassword}]]</a></li>
+							<th:block th:if="${currentUser != null}">
+								<th:block th:if="${#request.isUserInRole('ADMIN') || #request.isUserInRole('DIRECT')}">
+									<li class="dropdown-item"><a th:href="@{~/admin/index}"><i
+												class="fa fa-user-o"></i>[[#{header.adminpage}]]</a>
+									</li>
+								</th:block>
+							</th:block>
+							<li th:if="${currentUser == null}" class="dropdown-item"><a
+									th:href="@{~/access/register}"><i
+										class="fa fa-user-o"></i>[[#{header.register}]]</a></li>
+							<li th:if="${currentUser != null}" class="dropdown-item"><a th:href="@{~/home/logout}"><i
+										class="fa fa-user-o"></i>[[#{header.logout}]]</a></li>
+						</ul>
+					</li>
+					<i class="fa fa-language" style="font-size:20px; color: red;"></i>
+					<a style="color: white;" href="?lang=vi">Tiếng việt</a> |
+					<a style="color: white;" href="?lang=en">English</a>
+				</ul>
+
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a th:href="@{~/home/index}" class="logo">
+								<!-- <img src="./img/logo.png" alt=""> -->
+								<h1 style="color: white;">Latipee</h1>
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form action="/home/shop" method="post">
+								<input style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"
+									class="input" placeholder="Search here" name="shop_tuKhoa">
+								<button class="search-btn">[[#{header.search}]]</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<!-- Cart -->
+							<div class="dropdown">
+								<a th:href="@{~/home/cart}"> <i class="fa fa-shopping-cart"></i>
+									<span>[[#{header.cart}]]</span>
+									<div class="qty">3</div>
+								</a>
+							</div>
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#"> <i class="fa fa-bars"></i> <span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+
+</body>
+
+</html>

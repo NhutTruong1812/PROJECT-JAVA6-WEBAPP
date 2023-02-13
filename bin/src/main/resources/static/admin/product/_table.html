@@ -1,0 +1,54 @@
+﻿<div class="card">
+	<div class="card-header">
+		<h4 class="card-title">All Staff</h4>
+		<a class="btn btn-primary" ng-click="addnew()">+ Add new</a>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table display" style="min-width: 845px">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Create Date</th>
+						<th>Deleted</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in pager.items | filter:searchFish">
+						<td><img class="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""></td>
+						<td>{{item.name}}</td>
+						<td>{{item.category.name}}</td>
+						<td>{{item.price.price}}</td>
+						<td><strong>{{item.quantity}}</strong></td> 
+						<td>{{item.createDate | date: 'HH:mm dd-MM-yyyy'}}</td>
+						<td class="{{item.deleted?'text-danger':'text-success'}}" >{{item.deleted?'Ngừng bán':'Hoạt động'}}</td>
+						<td>
+							<button ng-click="edit(item)" class="btn btn-sm btn-primary" data-target="#form-view" data-toggle="tab" ><i class="la la-pencil"></i></button> 
+							<a ng-click="delete(item)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+						</td>
+					</tr> 
+				</tbody>
+			</table>
+			<div class="panel-footer text-center">
+				<button ng-click="pager.first()" class="btn btn-danger">
+					<<
+				</button>
+				<button ng-click="pager.prev()" class="btn btn-primary">
+					<
+				</button>
+				<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+				<button ng-click="pager.next()" class="btn btn-primary">
+					>
+				</button>
+				<button ng-click="pager.last()" class="btn btn-danger">
+					>>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

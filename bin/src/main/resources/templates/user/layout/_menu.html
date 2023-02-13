@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Home</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../user/css/bootstrap.min.css" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="../user/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="../user/css/slick-theme.css" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="../user/css/nouislider.min.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="../user/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../user/css/style.css" />
+
+</head>
+
+<body> 
+	<!-- NAVIGATION -->
+	<nav id="navigation" th:fragment="navbar">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a th:href="@{~/home/index}">[[#{menu.home}]]</a></li>
+					<li ><a th:href="@{~/home/shop}">[[#{menu.shop}]]</a></li>
+					<li ><a th:href="@{~/home/order}">[[#{menu.order}]]</a></li> 
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
+  
+	<!-- jQuery Plugins -->
+	<script src="../user/js/jquery.min.js"></script>
+	<script src="../user/js/bootstrap.min.js"></script>
+	<script src="../user/js/slick.min.js"></script>
+	<script src="../user/js/nouislider.min.js"></script>
+	<script src="../user/js/jquery.zoom.min.js"></script>
+	<script src="../user/js/main.js"></script>
+
+</body>
+
+</html>

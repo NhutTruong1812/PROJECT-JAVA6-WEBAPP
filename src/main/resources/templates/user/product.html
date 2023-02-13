@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+
+</head>
+
+<body>
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- Product main img -->
+				<div class="col-md-5 col-md-push-2">
+					<div id="product-main-img">
+						<div class="product-preview">
+							<img th:src="@{|/images/product/${product.banner}|}" alt="">
+						</div>
+						<div class="product-preview" th:each="img : ${product.images}" th:object="${img}">
+							<img th:src="@{|/images/bannerdetail/*{name}|}" alt="">
+						</div>
+
+					</div>
+				</div>
+				<!-- /Product main img -->
+
+				<!-- Product thumb imgs -->
+				<div class="col-md-2  col-md-pull-5">
+					<div id="product-imgs">
+						<div class="product-preview">
+							<img th:src="@{|/images/product/${product.banner}|}" alt="">
+						</div>
+						<div class="product-preview" th:each="img : ${product.images}" th:object="${img}">
+							<img th:src="@{|/images/bannerdetail/*{name}|}" alt="">
+						</div>
+					</div>
+				</div>
+				<!-- /Product thumb imgs -->
+
+				<!-- Product details -->
+				<div class="col-md-5">
+					<div class="product-details">
+						<h2 class="product-name">[[${product.name}]]</h2>
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+									class="fa fa-star"></i> <i class="fa fa-star-o"></i>
+							</div>
+						</div>
+						<div th:with="newest=${product.prices[0]}">
+							<h3 class="product-price" th:each="pr: ${product.prices}" th:object="${pr}">
+								<th:block th:if="*{changeDate} > ${newest.changeDate}">
+									<th:block th:with="newest=${pr}"></th:block>
+								</th:block>
+							</h3>
+							[[${#numbers.formatDecimal(newest.price, 0, 'COMMA', 0, 'POINT')}]] <span
+								class="product-available">In
+								Stock</span>
+						</div>
+						<p>[[${product.description}]]</p>
+
+						<div class="add-to-cart">
+							<div class="qty-label">
+								SL
+								<div class="input-number">
+									<input
+										th:onblur="|angular.element(this).scope().productDetail.checkQuantity(${product.id})|"
+										id="input-qty" class="input-qty" min="1" name="" type="number" ng-model="productDetail.quantity">
+									<span class="qty-up minus is-form">+</span>
+									<span class="qty-down plus is-form">-</span>
+								</div>
+							</div>
+							<button th:onclick="|angular.element(this).scope().productDetail.add(${product.id})|" class="add-to-cart-btn">
+								<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+							</button>
+
+						</div>
+
+						<ul class="product-links">
+							<li>Danh mục:</li>
+							<li><a href="#">[[${product.category.name}]]</a></li>
+						</ul>
+
+					</div>
+				</div>
+				<!-- /Product details -->
+
+				<!-- Product tab -->
+				<div class="col-md-12">
+					<div id="product-tab">
+						<!-- product tab nav -->
+						<ul class="tab-nav">
+							<li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+							<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+						</ul>
+						<!-- /product tab nav --2
+
+							<!-- product tab content -->
+						<div class="tab-content">
+							<!-- tab1  -->
+							<div id="tab1" class="tab-pane fade in active">
+								<div class="row">
+									<div class="col-md-12">
+										<p>[[${product.description}]]</p>
+									</div>
+								</div>
+							</div>
+							<!-- /tab1  -->
+
+							<!-- tab2  -->
+							<div id="tab2" class="tab-pane fade in">
+								<div class="row">
+									<!-- Rating -->
+									<div class="col-md-5">
+										<div id="rating">
+											<div class="rating-avg">
+												<span>4.5</span>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+											</div>
+											<ul class="rating">
+												<li>
+													<div class="rating-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+													</div>
+													<div class="rating-progress">
+														<div style="width: 80%;"></div>
+													</div>
+													<span class="sum">3</span>
+												</li>
+												<li>
+													<div class="rating-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o"></i>
+													</div>
+													<div class="rating-progress">
+														<div style="width: 60%;"></div>
+													</div>
+													<span class="sum">2</span>
+												</li>
+												<li>
+													<div class="rating-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+													</div>
+													<div class="rating-progress">
+														<div></div>
+													</div>
+													<span class="sum">0</span>
+												</li>
+												<li>
+													<div class="rating-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+													</div>
+													<div class="rating-progress">
+														<div></div>
+													</div>
+													<span class="sum">0</span>
+												</li>
+												<li>
+													<div class="rating-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o"></i>
+													</div>
+													<div class="rating-progress">
+														<div></div>
+													</div>
+													<span class="sum">0</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- /Rating -->
+
+									<!-- Reviews -->
+									<div class="col-md-7">
+										<div id="reviews">
+											<ul class="reviews">
+												<li>
+													<div class="review-heading">
+														<h5 class="name">John</h5>
+														<p class="date">27 DEC 2018, 8:0 PM</p>
+														<div class="review-rating">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o empty"></i>
+														</div>
+													</div>
+													<div class="review-body">
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+															do eiusmod tempor incididunt ut labore et dolore magna
+															aliqua</p>
+													</div>
+												</li>
+												<li>
+													<div class="review-heading">
+														<h5 class="name">John</h5>
+														<p class="date">27 DEC 2018, 8:0 PM</p>
+														<div class="review-rating">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o empty"></i>
+														</div>
+													</div>
+													<div class="review-body">
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+															do eiusmod tempor incididunt ut labore et dolore magna
+															aliqua</p>
+													</div>
+												</li>
+												<li>
+													<div class="review-heading">
+														<h5 class="name">John</h5>
+														<p class="date">27 DEC 2018, 8:0 PM</p>
+														<div class="review-rating">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o empty"></i>
+														</div>
+													</div>
+													<div class="review-body">
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+															do eiusmod tempor incididunt ut labore et dolore magna
+															aliqua</p>
+													</div>
+												</li>
+											</ul>
+											<ul class="reviews-pagination">
+												<li class="active">1</li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+												<li><a href="#">4</a></li>
+												<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- /Reviews -->
+								</div>
+							</div>
+							<!-- /tab3  -->
+						</div>
+						<!-- /product tab content  -->
+					</div>
+				</div>
+				<!-- /product tab -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- Section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row splien quan -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-center">
+						<h3 class="title">Sản phẩm liên quan</h3>
+					</div>
+				</div>
+				<div class="row">
+					<th:block th:each="spzz : ${splienquan}" th:object="${spzz}">
+						<div class="col-md-3 col-xs-6">
+							<!-- product xxx -->
+							<div class="product">
+								<div class="product-img">
+									<img th:src="@{|/images/product/*{banner}|}" alt="banner">
+									<div class="product-label">
+										<span class="sale">-30%</span>
+									</div>
+								</div>
+								<div class="product-body">
+									<p class="product-category" th:text="*{cate}"></p>
+									<h3 class="product-name">
+										<a href="#" th:text="*{name}">product name goes here</a>
+									</h3>
+									<h4 class="product-price">
+										<span th:text="*{pricezz}"></span>
+										<del class="product-old-price">$990.00</del>
+									</h4>
+									<div class="product-rating"></div>
+									<div class="product-btns">
+										<button class="quick-view">
+											<i class="fa fa-eye"></i><span class="tooltipp">quick
+												view</span>
+										</button>
+									</div>
+								</div>
+								<div class="add-to-cart">
+									<button class="add-to-cart-btn">
+										<i class="fa fa-shopping-cart"></i> add to cart
+									</button>
+								</div>
+							</div>
+							<!-- /product -->
+						</div>
+					</th:block>
+				</div>
+			</div>
+			<!-- /row splien quan -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /Section -->
+	<script>
+		//<![CDATA[
+		$('input.input-qty').each(function () {
+			var $this = $(this),
+				qty = $this.parent().find('.is-form'),
+				min = Number($this.attr('min')),
+				max = Number($this.attr('max'))
+			if (min == 0) {
+				var d = 0
+			} else d = min
+			$(qty).on('click', function () {
+				if ($(this).hasClass('minus')) {
+					if (d > min) d += -1
+				} else if ($(this).hasClass('plus')) {
+					var x = Number($this.val()) + 1
+					if (x <= max) d += 1
+				}
+				$this.attr('value', d).val(d)
+			})
+		})
+		//]]>
+	</script>
+</body>
+
+</html>

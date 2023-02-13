@@ -1,0 +1,63 @@
+﻿<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Basic Info</h5>
+            </div>
+            <div class="card-body">
+                <form action="" method="post" id="order">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input ng-model="form.user.username" readonly="true" id="username" type="text" class="form-control">
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Fullname</label>
+                                <input ng-model="form.fullname" type="text" id="fullname" class="form-control">
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">PhoneNumber</label>
+                                <input ng-model="form.phoneNumber" type="text" id="phonenumber" class="form-control">
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <input ng-model="form.address" type="text" id="address" class="form-control">
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Create Date</label>
+                                <input ng-model="form.createDate" type="date" id="createdate" class="form-control">
+                                <small class="form-message"></small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div  class="form-group">
+                                <label class="form-label">Trạng Thái</label>
+                                <select ng-model="form.status.id"  class="form-control">
+                                    <option ng-repeat="s in status" ng-hide="s.id == 'CANCELED'" ng-value="s.id">{{s.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div ng-click="update()" ng-hide="form.user.id == null" class="btn btn-primary">Cập nhật</div>
+                            <div ng-click="delete()" ng-hide="form.user.id == null" class="btn btn-danger">Hủy</div>
+                            <button ng-click="reset()" type="reset" class="btn btn-light">Làm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

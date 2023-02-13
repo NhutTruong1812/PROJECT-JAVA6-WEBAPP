@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+
+</head>
+
+<body>
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Regular Page</h3>
+					<ul class="breadcrumb-tree">
+						<li><a href="#">Home</a></li>
+						<li class="active">Blank</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- Shopping Cart Section Begin -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Quantity</th>
+										<th>Total</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody id="list-item">
+									<tr ng-repeat="item in cart.items" id="item-r-{{item.id}}"
+										class="d-flex justify-content-center">
+										<td>
+											<div class="row">
+												<div class="col-md-5">
+													<div class="product-img">
+														<img src="./img/product01.png" alt="" style="width: 100px;">
+													</div>
+												</div>
+												<div class="col-md-7">
+													<div class="product-body">
+														<h3 class="product-name">
+															<a href="#">{{item.product.name}}</a>
+														</h3>
+														<h4 class="product-price">{{item.price}}</h4>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td><input ng-blur="cart.update(item.id)" id="input-quantity-{{item.id}}"
+												type="number" value="{{item.quantity}}" style="width: 50px;">
+										</td>
+										<td id="cost-{{item.id}}">{{item.cost}}</td>
+										<td class="">
+											<button ng-click="cart.remove(item.id)">
+												<i class="fa fa-close"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2"><a href="#" class="btn btn-success">Tiếp
+												Tục mua sắm</a></td>
+										<td colspan="2"><button ng-click="cart.clear()" class="btn btn-danger">Xóa
+												toàn bộ</button></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<!-- Order Details -->
+						<div class="col-md-4 order-details">
+							<div class="section-title text-center">
+								<h3 class="title">Tổng giỏ hàng</h3>
+							</div>
+							<div class="order-summary">
+								<div class="order-col">
+									<div>
+										<strong>TOTAL</strong>
+									</div>
+									<div>
+										<strong class="order-total" id="order-total"></strong>
+									</div>
+								</div>
+							</div>
+							<a th:href="@{/home/checkout}" class="primary-btn order-submit">Thanh toán</a>
+						</div>
+						<!-- /Order Details -->
+					</div>
+					<!-- Shopping Cart Section End -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+	</div>
+	<!-- /SECTION -->
+</body>
+
+</html>

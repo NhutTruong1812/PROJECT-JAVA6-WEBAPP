@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/user/layout/layout.html :: dynamic(~{::body})}">
+
+<head>
+
+</head>
+
+<body>
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="breadcrumb-tree">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">All Categories</a></li>
+						<li><a href="#">Accessories</a></li>
+						<li class="active">Headphones (227,490 Results)</li>
+					</ul>
+				</div>
+				<!-- /store bottom filter -->
+			</div>
+			<!-- /STORE -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Danh mục</h3>
+						<div class="checkbox-filter">
+
+							<!-- each danh mục -->
+							<th:block th:each="entry : ${map_danhMuc}" th:object="${entry.value}">
+								<div class="input-checkbox">
+									<a th:href="|/home/shop?key_danhMuc=*{id}|"> <input type="checkbox"
+											th:if="${entry.key == '1_'.concat(entry.value.id)}" checked="checked">
+										<input type="checkbox" th:unless="${entry.key == '1_'.concat(entry.value.id)}">
+										<label for="category-1"> <span></span> [[*{name}]]
+											<!-- <small>(120)</small> -->
+										</label>
+									</a>
+								</div>
+							</th:block>
+
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Giá</h3>
+						<div class="price-filter">
+							<div id="price-slider"></div>
+							<div class="input-number price-min">
+								<input type="number" min="0" step="1000" th:value="${#session.getAttribute('shop_min')}"
+									id="min-pricezz">
+								<span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+							<span>-</span>
+							<div class="input-number price-max">
+								<input type="number" min="0" step="1000" th:value="${#session.getAttribute('shop_max')}"
+									id="max-pricezz">
+								<span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- STORE -->
+				<div id="store" class="col-md-9">
+					<!-- store top filter -->
+					<!-- <div class="store-filter clearfix">
+							<div class="store-sort">
+								<label>
+									Sort By:
+									<select class="input-select">
+										<option value="0">Popular</option>
+										<option value="1">Position</option>
+									</select>
+								</label> 
+							</div> 
+						</div> -->
+					<!-- /store top filter -->
+
+					<!-- store products -->
+					<div class="row">
+
+						<!-- product 1 -->
+						<th:block th:each="spzz : ${shop_sanPham.content}" th:object="${spzz}">
+							<div class="col-md-4 col-xs-6 card-a">
+								<div class="product">
+									<div class="product-img">
+										<img th:src="*{banner}" alt="">
+										<div class="product-label">
+											<span class="sale">-30%</span> <span class="new">NEW</span>
+										</div>
+									</div>
+									<div class="product-body">
+										<p class="product-category" th:text="*{cate}"></p>
+										<h3 class="product-name">
+											<a href="#" th:text="*{name}">product name goes here</a>
+										</h3>
+										<h4 class="product-price">
+											$<span class="card-a-price">[[*{pricezz}]] </span>
+											<del class="product-old-price">$990.00</del>
+										</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+												class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+
+											<button class="quick-view"><a th:href="@{|/home/shop/detail/*{id}|}">
+													<i class="fa fa-eye"></i><span class="tooltipp">quick
+														view</span></a>
+											</button>
+
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn">
+											<i class="fa fa-shopping-cart"></i> add to cart
+										</button>
+									</div>
+								</div>
+							</div>
+						</th:block>
+						<!-- /product 1 -->
+
+					</div>
+					<!-- /store products -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<span class="store-qty">Showing 20-100 products</span>
+						<ul class="store-pagination">
+							<th:block th:if="${(shop_sanPham.number > 0 )}">
+								<li><a th:href="|?shop_trang=0|">1</a></li>
+							</th:block>
+
+							<th:block th:if="${(shop_sanPham.number > 1) }">
+								<li><a th:href="|?shop_trang=${shop_sanPham.number - 1}|">
+										[[${(shop_sanPham.number)}]]</a></li>
+							</th:block>
+							<li class="active">[[${(shop_sanPham.number + 1 )}]]</li>
+							<th:block th:if="${(shop_sanPham.totalPages) > (shop_sanPham.number + 1) }">
+								<li><a th:href="|?shop_trang=${shop_sanPham.number+1}|">
+										[[${shop_sanPham.number+2}]]</a></li>
+							</th:block>
+							<th:block th:if="${(shop_sanPham.totalPages) > (shop_sanPham.number + 2) }">
+								<li><a th:href="|?shop_trang=${shop_sanPham.totalPages - 1}|">
+										[[${shop_sanPham.totalPages} ]]</a></li>
+							</th:block>
+						</ul>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /STORE -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+</body>
+
+</html>

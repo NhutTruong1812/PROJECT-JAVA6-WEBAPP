@@ -1,0 +1,55 @@
+﻿        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				    
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Thể loại</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                        </ol>
+                    </div>
+                </div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<ul class="nav nav-pills mb-3">
+							<li class="nav-item"><a data-target="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">Danh sách thể loại</a></li>
+							<li class="nav-item"><a data-target="#form-view" data-toggle="tab" class="nav-link btn-primary">Form thể loại</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-12">
+						<div class="row tab-content">
+							<div id="list-view" class="tab-pane fade active show col-lg-12"> 
+								<div ng-include="'/admin/category/_table.html'"></div>
+                            </div>
+							<div id="form-view" class="tab-pane fade col-lg-12"> 
+								<div ng-include="'/admin/category/_form.html'"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+		    <!-- Required vendors -->
+			<script src="../admin/assets/vendor/global/global.min.js"></script>
+			<script src="../admin/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+			<script src="../admin/assets/js/custom.min.js"></script>
+			<script src="../admin/assets/js/dlabnav-init.js"></script>	
+			 
+			<!-- Svganimation scripts -->
+			<script src="../admin/assets/vendor/svganimation/vivus.min.js"></script>
+			<script src="../admin/assets/vendor/svganimation/svg.animation.js"></script>
+			<script src="../admin/assets/js/styleSwitcher.js"></script>
+			

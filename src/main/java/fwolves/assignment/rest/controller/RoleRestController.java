@@ -1,0 +1,35 @@
+package fwolves.assignment.rest.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import fwolves.assignment.entity.Role;
+import fwolves.assignment.service.RoleService;
+
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/rest/role")
+public class RoleRestController {
+
+	@Autowired
+	private RoleService roleService;
+
+	@GetMapping
+	public ResponseEntity<List<Role>> get() {
+		return roleService.get();
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Role> get(@PathVariable("id") String id) {
+		return roleService.get(id);
+	}
+}
